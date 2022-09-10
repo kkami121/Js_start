@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko"> 
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>끝말잇기</title>
+  <style>
+    
+  </style>
+</head>
+<body>
+  <div><span id = "order">1</span>번째 참가자</div>
+  <div>제시어 : <span id = "word"></span></div>
+  <input type = "text">
+  <button>입력</button>
+  <script>
+    
+    const number = parseInt(prompt("참가 인원은?"), 10 /*십진법 표시*/);
+    alert(number); // 입력한 수를 알림창으로 띄워줌
+    const yesOrNo = confirm("맞나요?"); // 예, 아니오를 선택할 수 있음
+    
+    const $input = document.querySelector('input'); //15줄에 input태그를 선택 할 때 쓰는 함수 + input태그를 선택한 변수에는 $를 앞에 붙여서 표시하는 등의 변수 개인적인 변수 설정 방법
+    const $button = document.querySelector('button');
+    const $word = document.querySelector('#word');
+    const $order = document.querySelector('#order');
+    // document.querySelectorAll('input') => 모든 input태그를 선택
+    // document.querySelector('#order') => 13줄의 id = order를 선택 앞에 #은 id를 선택자로 한다는 의미
+  
+    // <button class ="btn">버튼2</button>
+    // document.querySelector('.btn') => 클래스를 선택자로 할 경우는 앞에 .을 붙임
+
+    let word; // 제시어
+    let newword; // 새로 입력할 단어
+    
+    const onClickButton = () => {
+      if(!word || word[word.length - 1] === newword[0]){
+        word = newword;
+        $word.textContent = word; // id에 해당하는 값을 넣어주는
+        $input.value = '';
+        
+        const order = parseInt($order.textContent)
+        if(order === number){
+          $order.textContent = 1;
+        }
+        else{
+          $order.textContent = order + 1;
+        }
+      }
+      else {
+        alert('패배')
+      }
+      $input.value = '';
+      $input.focus();
+    };
+
+    const onInput = (event) => {
+      newword = event.target.value;
+    };
+    $button.addEventListener('click', onClickButton);
+    $input.addEventListener('input', onInput);
+    
+    
+  </script>
+</body>
+</html>

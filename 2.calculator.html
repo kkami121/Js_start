@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>계산기</title>
+  <style>
+    * { box-sizing: border-box }
+    #result { width: 180px; height: 50px; margin: 5px; text-align: right }
+    #operator { width: 50px; height: 50px; margin: 5px; text-align: center }
+    button { width: 50px; height: 50px; margin: 5px }
+  </style>
+</head>
+
+<!-- 계산기 버튼 구현 -->
+<body>
+  <input readonly id="operator">
+  <input readonly type="number" id="result">
+  <div class="row">
+    <button id="num-7">7</button>
+    <button id="num-8">8</button>
+    <button id="num-9">9</button>
+    <button id="plus">+</button>
+  </div>
+  <div class="row">
+    <button id="num-4">4</button>
+    <button id="num-5">5</button>
+    <button id="num-6">6</button>
+    <button id="minus">-</button>
+  </div>
+  <div class="row">
+    <button id="num-1">1</button>
+    <button id="num-2">2</button>
+    <button id="num-3">3</button>
+    <button id="divide">/</button>
+  </div>
+  <div class="row">
+    <button id="clear">C</button>
+    <button id="num-0">0</button>
+    <button id="calculate">=</button>
+    <button id="multiply">x</button>
+  </div>
+<script>
+  let numOne = '';
+  let operator = '';
+  let numTwo = '';
+  const $operator = document.querySelector('#operator');
+  const $result = document.querySelector('#result');
+  
+  const onClickNumber = (event) => {
+    
+    if (operator) { // 비어있지 않으면
+      numTwo += event.target.textContent;
+      
+     
+    }
+    else { // 비어있으면
+      numOne += event.target.textContent;
+    }
+
+  };
+  //onClickNumber만 들어갈 경우 evnent onclickNumber('0')이 들어갈 경우 리턴 값이 있어야함
+                                      /* => 리턴값이 있다는건 
+                                      // const onClickNumber = (number) => {
+                                        return () => {
+
+                                        };
+                                      }; 이런식으로 해야하는데 */
+                                      /*
+                                      {return () => {}}에서 return을 생각가능
+
+                                      따라서
+                                      const onClickNumber = (number) => () =>{
+
+                                      }; 이렇게 가능하다
+                                      */
+  document.querySelector('#num-0').addEventListener('click', onClickNumber); // 두 번째 자리는 함수가 들어가야함
+  document.querySelector('#num-1').addEventListener('click', onClickNumber);
+  document.querySelector('#num-2').addEventListener('click', onClickNumber);
+  document.querySelector('#num-3').addEventListener('click', () => {});
+  document.querySelector('#num-4').addEventListener('click', () => {});
+  document.querySelector('#num-5').addEventListener('click', () => {});
+  document.querySelector('#num-6').addEventListener('click', () => {});
+  document.querySelector('#num-7').addEventListener('click', () => {});
+  document.querySelector('#num-8').addEventListener('click', () => {});
+  document.querySelector('#num-9').addEventListener('click', () => {});
+
+
+  document.querySelector('#plus').addEventListener('click', () => {});
+  document.querySelector('#minus').addEventListener('click', () => {});
+  document.querySelector('#divide').addEventListener('click', () => {});
+  document.querySelector('#multiply').addEventListener('click', () => {});
+  document.querySelector('#calculate').addEventListener('click', () => {})
+
+</script>
+</body>
